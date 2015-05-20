@@ -20,8 +20,14 @@ public:
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
+protected:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-	
+	//handles moving forward/backward
+	UFUNCTION()
+	void MoveForward(float Val);
+	//handles strafing
+	UFUNCTION()
+	void MoveRight(float Val);
 };

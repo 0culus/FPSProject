@@ -35,5 +35,38 @@ void AFPSCharacter::SetupPlayerInputComponent(class UInputComponent* InputCompon
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 
+	// set up gameplay key bindings
+	InputComponent->BindAxis("MoveForward", this, &AFPSCharacter::MoveForward);
+	InputComponent->BindAxis("MoveRight", this, &AFPSCharacter::MoveRight);
 }
 
+// Handle move forward and backward; camera relative
+void AFPSCharacter::MoveForward(float Value)
+{
+	if ((Controller != nullptr) && (Value != 0.0f))
+	{
+		// find out which way is forward
+		FRotator Rotation = Controller->GetControlRotation();
+		// Limit pitch when walking or falling
+		if (GetCharacterMovement()->IsMovingOnGround() || GetCharacterMovement()->IsFalling())
+		{
+			Rotation.Pitch = 0.0f;
+		}
+		// add movement in that direction
+		const FVector Direction = FRotationMatrix(Rotation).GetScaledAxis(EAxis::X);
+		AddMovementInput(Direction, Value);
+	}
+}
+
+// Handle left and right
+void AFPSCharacter::MoveRight(float Value)
+{
+	if ((Controller != nullptr) && (Value != 0.0f))
+	{
+		// find out which way is right
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FVector Direction = FRotationMatrix(Rotation).GetScaledAxis(EAxis::Y);
+		// add movement in that direction
+		AddMovementInput(Direction, Value);
+	}
+}
