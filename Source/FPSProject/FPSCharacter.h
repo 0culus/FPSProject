@@ -20,6 +20,14 @@ public:
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
+	//sets jump flag when key is pressed
+	UFUNCTION()
+	void OnStartJump();
+
+	//clears jump flag when key is released
+	UFUNCTION()
+	void OnStopJump();
+
 protected:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;

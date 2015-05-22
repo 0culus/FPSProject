@@ -30,6 +30,16 @@ void AFPSCharacter::Tick( float DeltaTime )
 
 }
 
+void AFPSCharacter::OnStartJump()
+{
+	bPressedJump = true;
+}
+
+void AFPSCharacter::OnStopJump()
+{
+	bPressedJump = false;
+}
+
 // Called to bind functionality to input
 void AFPSCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
@@ -42,6 +52,10 @@ void AFPSCharacter::SetupPlayerInputComponent(class UInputComponent* InputCompon
 	// mouse camera control
 	InputComponent->BindAxis("Turn", this, &AFPSCharacter::AddControllerYawInput);
 	InputComponent->BindAxis("LookUp", this, &AFPSCharacter::AddControllerPitchInput);
+
+	// jump
+	InputComponent->BindAction("Jump", IE_Pressed, this, &AFPSCharacter::OnStartJump);
+	InputComponent->BindAction("Jump", IE_Released, this, &AFPSCharacter::OnStopJump);
 }
 
 // Handle move forward and backward; camera relative
