@@ -27,6 +27,7 @@ protected:
 	//handles moving forward/backward
 	UFUNCTION()
 	void MoveForward(float Val);
+
 	//handles strafing
 	UFUNCTION()
 	void MoveRight(float Val);
