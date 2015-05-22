@@ -38,6 +38,10 @@ void AFPSCharacter::SetupPlayerInputComponent(class UInputComponent* InputCompon
 	// set up gameplay key bindings
 	InputComponent->BindAxis("MoveForward", this, &AFPSCharacter::MoveForward);
 	InputComponent->BindAxis("MoveRight", this, &AFPSCharacter::MoveRight);
+
+	// mouse camera control
+	InputComponent->BindAxis("Turn", this, &AFPSCharacter::AddControllerYawInput);
+	InputComponent->BindAxis("LookUp", this, &AFPSCharacter::AddControllerPitchInput);
 }
 
 // Handle move forward and backward; camera relative
