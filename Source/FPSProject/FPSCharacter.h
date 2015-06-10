@@ -14,11 +14,22 @@ public:
 	// Sets default values for this character's properties
 	AFPSCharacter();
 
+	// Constructor for AFPSCharacter
+	AFPSCharacter(const FObjectInitializer& ObjectInitializer);
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
+
+	// First person camera
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera)
+	UCameraComponent* FirstPersonCameraComponent;
+
+	// Pawn mesh: 1st person view (arms; seen only by self)
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	USkeletalMeshComponent* FirstPersonMesh;
 
 	//sets jump flag when key is pressed
 	UFUNCTION()

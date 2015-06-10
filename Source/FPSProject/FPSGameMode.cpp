@@ -2,7 +2,6 @@
 
 #include "FPSProject.h"
 #include "FPSGameMode.h"
-#include "FPSCharacter.h"
 
 AFPSGameMode::AFPSGameMode(const class FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
